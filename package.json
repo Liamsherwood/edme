@@ -1,11 +1,11 @@
 {
-    "name": "bent-o",
+    "name": "edme",
     "version": "1.0.0",
     "private": true,
-    "description": "Bento layout template made for you!",
+    "description": "More soon!",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/christian-luntok/bent-o"
+        "url": "git+https://github.com/Liamsherwood/edme"
     },
     "keywords": [
         "next",
@@ -16,8 +16,8 @@
         "tailwindcss",
         "tailwind"
     ],
-    "author": "chrstnl",
-    "homepage": "https://chrstnl.com/",
+    "author": "Liam Sherwood",
+    "homepage": "https://edme.vercel.app",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
