@@ -3,9 +3,11 @@ import "@styles/globals.scss";
 import { SITE } from "@/config";
 import { Header } from "@components/global/header";
 import { Footer } from "@components/global/footer";
+import SplashScreen from "@/components/global/splashscreen";
+
 
 export const metadata: Metadata = {
-    title: SITE.title || "Your Title",
+    title: SITE.title || "edme.",
     description: SITE.desc || "Your company description.",
     keywords: SITE.keywords || "Your company keywords",
     icons: {
@@ -54,7 +56,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className="bg-neutral-200">
+            <body className="bg-neutral-900">
+                <div className="fixed top-0 letf-0 w-full h-full bg-repeat heropattern-graphpaper-gray-950">
+                </div>
+                <SplashScreen/> 
                 <Header />
                 <main className="main grid gap-8">{children}</main>
                 <Footer />

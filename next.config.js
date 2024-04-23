@@ -10,6 +10,14 @@ const nextConfig = {
     },
     sassOptions: {
         includePaths: [path.join(__dirname, "styles")]
+    },
+    webpack: (config, options) => {
+        config.module.rules.push({
+            test: /\.glsl$/,
+            use: 'glsl-shader-loader',
+        });
+
+        return config;
     }
 };
 

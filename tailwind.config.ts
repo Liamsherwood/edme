@@ -4,6 +4,15 @@ const config: Config = {
     content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
     theme: {
         extend: {
+            backgroundImage: theme => ({
+                'gradient-linear' : 'linear-gradient(to right,#F3D8E1 4.72%, #919FCC 27.52%, #1969D0 50.32%, #0F61E6 77.12%);'
+            }),
+            strokeWidth: {
+                '1': '1px',
+                '2': '2px',
+                '2.5': '2.5px',
+                '3': '3px',
+            },
             fontFamily: {
                 body: ["Inter", "Sans Serif"],
                 title: ["Inter", "Sans Serif"]
@@ -72,9 +81,23 @@ const config: Config = {
                     800: "#000000",
                     900: "#000000"
                 },
+                gray: {
+                    DEFAULT: '#8C8C8C',
+                    50: '#F3F3F3',
+                    100: '#E8E8E8',
+                    200: '#D1D1D1',
+                    300: '#BABABA',
+                    400: '#A3A3A3',
+                    500: '#8C8C8C',
+                    600: '#747474',
+                    700: '#5D5D5D',
+                    800: '#464646',
+                    900: '#303030',
+                    950: '#252525'
+                },
                 white: {
                     DEFAULT: "#FFFFFF",
-                    50: "#FFFFFF",
+                    50: "#FFFFFC",
                     100: "#FCFCFC",
                     200: "#FCFCFC",
                     300: "#FAFAFA",
@@ -102,8 +125,8 @@ const config: Config = {
                     50: "#E6E6E6",
                     100: "#CCCCCC",
                     200: "#999999",
-                    300: "#666666",
-                    400: "#333333",
+                    300: "#434343",
+                    400: "#0F61E6",
                     500: "#010101",
                     600: "#000000",
                     700: "#000000",
@@ -116,6 +139,9 @@ const config: Config = {
             }
         }
     },
-    plugins: [require("@tailwindcss/typography")]
+    plugins: [
+        require("@tailwindcss/typography"),
+        require("tailwindcss-hero-patterns")
+    ],
 };
 export default config;
