@@ -1,4 +1,3 @@
-import { Button } from "@/components/global/button";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
