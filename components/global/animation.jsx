@@ -62,7 +62,7 @@ const createGeometry = (positions, colors) => {
   
   return geometry;
 };
-const Animation = React.memo((props) => {
+const Animation = React.memo(function Animation(props) {
   const texture = useLoader(THREE.TextureLoader,'logo.png');
   texture.encoding = SRGBColorSpace;
   const { camera, gl, scene } = useThree();
@@ -171,7 +171,7 @@ const Animation = React.memo((props) => {
       ease: "power2.inOut",
     });
     
-  }, []);
+  }, [scene,texture]);
   useFrame(({ clock }) => {
     if (materialRef.current && geometryRef.current) {
       let material = materialRef.current;
