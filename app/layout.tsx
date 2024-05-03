@@ -3,7 +3,8 @@ import "@styles/globals.scss";
 import { SITE } from "@/config";
 import { Header } from "@components/global/header";
 import { Footer } from "@components/global/footer";
-import SplashScreen from "@/components/global/splashscreen";
+
+import SplashScreenWrapper from "@/components/global/splashscreenwrapper";
 
 
 export const metadata: Metadata = {
@@ -59,10 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className="bg-neutral-900">
                 <div className="fixed top-0 letf-0 w-full h-full bg-repeat heropattern-graphpaper-gray-950">
                 </div>
-                <SplashScreen/> 
-                <Header />
-                <main className="main grid gap-8">{children}</main>
-                <Footer />
+                <SplashScreenWrapper>
+                    <Header />
+                    <main className="main grid gap-8">{children}</main>
+                    <Footer />
+                </SplashScreenWrapper>
             </body>
         </html>
     );

@@ -2,24 +2,26 @@
 
 import dynamic from 'next/dynamic';
 const Logo = dynamic(() => import('@/components/global/animation'), { ssr: false });
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import { usePathname } from 'next/navigation';
+import { AnimationContext } from '@/components/global/animation';
 
 const SplashScreen: React.FC = () => {
-    const [loading, setLoading] = useState(true)
+    const [active, setActive] = useState(false)
     const pathname = usePathname();
+    const { isAnimationFinished } = useContext(AnimationContext);
     
     useEffect(() => {
-        if (pathname === '/') {
+        if (pathname === '/' && !isAnimationFinished) {
             setTimeout(() => {
-                setLoading(false)
-            }, 8000)
+                setActive(true)
+            }, 0)
         } else {
-            setLoading(false);
+            setActive(true);
         }
-    }, [pathname]);
+    }, [pathname, isAnimationFinished]);
 
-    return loading ? (
+    return active ? (
         <div className="splash-screen top-0 bottom-0 fixed w-full flex justify-center items-center">
             <Logo />
         </div>

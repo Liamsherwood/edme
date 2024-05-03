@@ -5,7 +5,7 @@ const config: Config = {
     theme: {
         extend: {
             backgroundImage: theme => ({
-                'gradient-linear' : 'linear-gradient(to right,#F3D8E1 4.72%, #919FCC 27.52%, #1969D0 50.32%, #0F61E6 77.12%);'
+                'gradient-linear' : 'linear-gradient(to right,#FACC17 0%, #2EA741 50.0%, #0F61E6 100%);'
             }),
             strokeWidth: {
                 '1': '1px',

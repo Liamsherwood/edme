@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useContext, createContext } from 'react';
 import { Canvas, useLoader, useThree, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
@@ -18,6 +18,8 @@ const loadShaders = async () => {
 };
 
 loadShaders();
+
+export const AnimationContext = createContext();
 
 // Functions...
 const createCanvas = (texture) => {
@@ -74,7 +76,8 @@ const Animation = React.memo(function Animation(props) {
   const velocitiesRef = useRef([]);
   const initialPositionsRef = useRef([]);
   const currentPositionsRef = useRef([]);
-  
+  const { setIsAnimationFinished } = useContext(AnimationContext);
+
   // moved functions from here to top of file
   useEffect(() => {
     if (!texture.image || !PointsRef.current) {
@@ -155,8 +158,11 @@ const Animation = React.memo(function Animation(props) {
       delay: 5.9,
     });
   
-    let tl = gsap.timeline();
-
+    let tl = gsap.timeline({
+      onComplete: () => {
+        setIsAnimationFinished(true);
+      },
+    });
     tl.to(materialRef.current.uniforms.transition, {
       value: 1,
       duration: 3,
@@ -170,6 +176,7 @@ const Animation = React.memo(function Animation(props) {
       duration: 2.9,
       ease: "power2.inOut",
     });
+
     
   }, [scene,texture]);
   useFrame(({ clock }) => {

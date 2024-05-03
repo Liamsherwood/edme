@@ -3,8 +3,8 @@
 import { Site } from "./types";
 
 export const SITE: Site = {
-    siteUrl: "https://www.bento.chrstnl.com/", // Always put "/" at the end of the URL
-    author: "jim",
+    siteUrl: "https://www.edme.vercel.app/", // Always put "/" at the end of the URL
+    author: "Liam Sherwood",
     desc: "Welcome to Bent-o, A bento theme made for you!",
     title: "edme.",
     ogImage: "https://www.chrstnl.com/oggraph-image.png",
