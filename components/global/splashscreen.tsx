@@ -13,9 +13,7 @@ const SplashScreen: React.FC = () => {
     
     useEffect(() => {
         if (pathname === '/' && !isAnimationFinished) {
-            setTimeout(() => {
-                setActive(true)
-            }, 0)
+            setActive(true);
         } else {
             setActive(true);
         }

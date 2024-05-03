@@ -3,7 +3,6 @@ import "@styles/globals.scss";
 import { SITE } from "@/config";
 import { Header } from "@components/global/header";
 import { Footer } from "@components/global/footer";
-
 import SplashScreenWrapper from "@/components/global/splashscreenwrapper";
 
 

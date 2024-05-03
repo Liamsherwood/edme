@@ -30,7 +30,7 @@ mat4 rotationMatrix(vec3 axis, float angle)
 
 // Function to create curl noise color
 vec3 curlNoiseColor(vec3 p, vec3 color) {
-  float factor = 0.7;
+  float factor = 0.8;
   vec3 noise = gln_curl(p * factor + vec3(color + uRandomSeed));
   return noise;
 }
@@ -50,7 +50,7 @@ void main() {
       float scale = 0.06;
       gln_tFBMOpts opts = gln_tFBMOpts(uSeed, 4.5, 1.8, 2.0, 4.2, 1, false, true);
       vec3 noise = curlNoiseColor(computedPosition * scale + time, color);
-      localVelocity += noise * 2.6;  // Adjust to control the amount of noise
+      localVelocity += noise * 3.0;  // Adjust to control the amount of noise
       computedPosition += localVelocity * transition;
       
       // Apply rotation

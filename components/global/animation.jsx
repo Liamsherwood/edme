@@ -4,12 +4,12 @@ import React, { useEffect, useRef, useState, useContext, createContext } from 'r
 import { Canvas, useLoader, useThree, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
-import { AmbientLight,SRGBColorSpace } from 'three';
+import { SRGBColorSpace } from 'three';
 import { gsap } from 'gsap';
 import { Simplex, Curl, patchShaders } from "gl-noise/build/glNoise.m.js"
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
-import { context } from '@react-three/drei/web/pivotControls/context';
+
 const chunks = [[ Simplex, Curl], null,]
 let patchedVertexShader, patchedFragmentShader;
 
@@ -65,7 +65,7 @@ const createGeometry = (positions, colors) => {
   return geometry;
 };
 const Animation = React.memo(function Animation(props) {
-  const texture = useLoader(THREE.TextureLoader,'logo.png');
+  const texture = useLoader(THREE.TextureLoader,'logo2.png');
   texture.encoding = SRGBColorSpace;
   const { camera, gl, scene } = useThree();
   const PointsRef = useRef();
@@ -97,11 +97,10 @@ const Animation = React.memo(function Animation(props) {
     const height = boundingBox.max.y - boundingBox.min.y;
 
     const planeGeometry = new THREE.PlaneGeometry(width, height);
-    const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true});
+    const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 0});
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.position.set(0, 0, 0);
     scene.add(plane);
-    // positionsRef.current = positions; * Check if this is needed, if not remove it. -> significantly drops CPU load *
 
     let pts = new Array(positions.length / 3).fill().map((p, i) => {
       let position = new THREE.Vector3()
@@ -152,11 +151,11 @@ const Animation = React.memo(function Animation(props) {
       console.error("Error creating ShaderMaterial: ", error);
     }
 
-    gsap.to(materialRef.current.uniforms.opacity, {
-      value: 0,
-      duration: 0.5,
-      delay: 5.9,
-    });
+    // gsap.to(materialRef.current.uniforms.opacity, {
+    //   value: 0,
+    //   duration: 0.5,
+    //   delay: 5.9,
+    // });
   
     let tl = gsap.timeline({
       onComplete: () => {
@@ -176,8 +175,17 @@ const Animation = React.memo(function Animation(props) {
       duration: 2.9,
       ease: "power2.inOut",
     });
+    tl.to(materialRef.current.uniforms.opacity, {
+      value: 0,
+      duration: 0.1,
+    });
+    tl.to(plane.material, {
+      opacity: 1,
+      duration: 0.1,
+    }, 5.9);
 
-    
+    tl.set({}, {}, "+=1");
+
   }, [scene,texture]);
   useFrame(({ clock }) => {
     if (materialRef.current && geometryRef.current) {
