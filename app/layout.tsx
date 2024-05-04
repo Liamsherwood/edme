@@ -7,7 +7,7 @@ import SplashScreenWrapper from "@/components/global/splashscreenwrapper";
 
 
 export const metadata: Metadata = {
-    title: SITE.title || "edme.",
+    title: SITE.title || "Edme",
     description: SITE.desc || "Your company description.",
     keywords: SITE.keywords || "Your company keywords",
     icons: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         }
     },
     openGraph: {
-        title: SITE.title || "Your Title",
+        title: SITE.title || "Edme",
         description: SITE.desc || "Your company description.",
         authors: SITE.author || "Your Author",
         images: [
