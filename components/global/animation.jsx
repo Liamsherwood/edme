@@ -65,9 +65,12 @@ const createGeometry = (positions, colors) => {
   return geometry;
 };
 const Animation = React.memo(function Animation(props) {
-  const texture = useLoader(THREE.TextureLoader,'logo2.png');
-  texture.encoding = SRGBColorSpace;
   const { camera, gl, scene } = useThree();
+  gl.outputEncoding = THREE.sRGBEncoding;
+  const texture = useLoader(THREE.TextureLoader,'logo2.png');
+  texture.encoding = THREE.sRGBEncoding;
+  // texture.minFilter = THREE.LinearFilter;
+
   const PointsRef = useRef();
   const materialRef = useRef();
   const geometryRef = useRef();
@@ -97,7 +100,7 @@ const Animation = React.memo(function Animation(props) {
     const height = boundingBox.max.y - boundingBox.min.y;
 
     const planeGeometry = new THREE.PlaneGeometry(width, height);
-    const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 0});
+    const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 0, premultipliedAlpha: false});
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.position.set(0, 0, 0);
     scene.add(plane);
